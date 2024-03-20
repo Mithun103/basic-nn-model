@@ -49,8 +49,8 @@ Evaluate the model with the testing data.
 
 ## PROGRAM:
 
-### Name: SABARI S
-### Register Number: 212222240085
+### Name: MITHUN M S
+### Register Number: 212222240067
 
 ```python
 from google.colab import auth
