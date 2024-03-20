@@ -49,8 +49,8 @@ Using the DL model predict for some random inputs
 
 ## PROGRAM
 
-### Name: Sri Varshan P
-### Register Number: 212222240104
+### Name: MITHUN M S
+### Register Number: 212222240067
 
 ```py
 
