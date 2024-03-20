@@ -49,8 +49,8 @@ Evaluate the model with the testing data.
 
 ## PROGRAM:
 
-### Name: Mithun M S
-### Register Number: 212222240067
+### Name: SABARI S
+### Register Number: 212222240085
 
 ```python
 from google.colab import auth
@@ -113,7 +113,7 @@ X_neww = Scaler.transform(X_new)
 AI_brain.predict(X_neww)
 ```
 ## Dataset Information
-![image](https://github.com/Mithun103/basic-nn-model/assets/118660461/a81ebfe2-49d3-43e1-a285-ddf876679ae0)
+![image](https://github.com/SABARI005/basic-nn-model/assets/118660461/a81ebfe2-49d3-43e1-a285-ddf876679ae0)
 
 
 
@@ -121,15 +121,15 @@ AI_brain.predict(X_neww)
 ## OUTPUT
 
 ### Training Loss Vs Iteration Plot
-![image](https://github.com/Mithun103/basic-nn-model/assets/118660461/b34d7bd6-421e-4e65-8df1-071dd448daca)
+![image](https://github.com/SABARI005/basic-nn-model/assets/118660461/b34d7bd6-421e-4e65-8df1-071dd448daca)
 
 
 ### Test Data Root Mean Squared Error
-![image](https://github.com/Mithun103/basic-nn-model/assets/118660461/4b8e1d7c-38f4-4c21-b9f7-f9e15f84aa17)
+![image](https://github.com/SABARI005/basic-nn-model/assets/118660461/4b8e1d7c-38f4-4c21-b9f7-f9e15f84aa17)
 
 
 ### New Sample Data Prediction
-![image](https://github.com/Mithun103/basic-nn-model/assets/118660461/c881a688-54e1-4959-835c-d6d75e3fe7e4)
+![image](https://github.com/SABARI005/basic-nn-model/assets/118660461/c881a688-54e1-4959-835c-d6d75e3fe7e4)
 
 
 ## RESULT
