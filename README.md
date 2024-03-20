@@ -1,136 +1,336 @@
-# Developing a Neural Network Regression Model
+# Developing a Neural Network Classification Model
 
 ## AIM
 
-To develop a neural network regression model for the given dataset.
+To develop a neural network classification model for the given dataset.
 
-## THEORY
+## Problem Statement
+<h4>
 
-Neural networks consist of simple input/output units called neurons (inspired by neurons of the human brain). These input/output units are interconnected and each connection has a weight associated with it. Neural networks are flexible and can be used for both classification and regression. In this article, we will see how neural networks can be applied to regression problems.
+An automobile company has plans to enter new markets with their existing products. After intensive market research, they’ve decided that the behavior of the new market is similar to their existing market.
 
-Regression helps in establishing a relationship between a dependent variable and one or more independent variables. Regression models work well only when the regression equation is a good fit for the data. Most regression models will not fit the data perfectly. Although neural networks are complex and computationally expensive, they are flexible and can dynamically pick the best type of regression, and if that is not enough, hidden layers can be added to improve prediction.
+In their existing market, the sales team has classified all customers into 4 segments (A, B, C, D ). Then, they performed segmented outreach and communication for a different segment of customers. This strategy has work exceptionally well for them. They plan to use the same strategy for the new markets.
 
-First import the libraries which we will going to use and Import the dataset and check the types of the columns and Now build your training and test set from the dataset Here we are making the neural network 3 hidden layer with activation layer as relu and with their nodes in them. Now we will fit our dataset and then predict the value.
+You are required to help the manager to predict the right group of the new customers.
+</h4>
 
 ## Neural Network Model
 
-![image](https://github.com/SABARI005/basic-nn-model/assets/118660461/414b5b8e-ff25-42e2-9970-e368e8cdd3a6)
+![image](https://github.com/PSriVarshan/nn-classification/assets/114944059/3ac2a332-0128-43cd-bc0d-48a482b84268)
 
 
 ## DESIGN STEPS
 
+## DESIGN STEPS
+
 ### STEP 1:
-
-Loading the dataset
-
+Import the necessary packages & modules
 ### STEP 2:
-
-Split the dataset into training and testing
-
+Load and read the dataset
 ### STEP 3:
-
-Create MinMaxScalar objects ,fit the model and transform the data.
-
+Perform pre processing and clean the dataset
 ### STEP 4:
-
-Build the Neural Network Model and compile the model.
-
+Encode categorical value into numerical values using ordinal/label/one hot encoding
 ### STEP 5:
-
-Train the model with the training data.
-
+Visualize the data using different plots in seaborn
 ### STEP 6:
-
-Plot the performance plot
-
+Normalize the values and split the values for x and y
 ### STEP 7:
+Build the deep learning model with appropriate layers and depth
+### STEP 8:
+Analyze the model using different metrics
+### STEP 9:  
+Plot a graph for Training Loss, Validation Loss Vs Iteration & for Accuracy, Validation Accuracy vs Iteration
+### STEP 10:
+Save the model using pickle
+### STEP 11:
+Using the DL model predict for some random inputs
 
-Evaluate the model with the testing data.
 
-## PROGRAM:
+## PROGRAM
 
-### Name: MITHUN M S
-### Register Number: 212222240067
+### Name: Sri Varshan P
+### Register Number: 212222240104
 
-```python
-from google.colab import auth
-import gspread
-from google.auth import default
+```py
+
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler
-
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
+from tensorflow.keras.models import load_model
 
-auth.authenticate_user()
-creds, _ = default()
-gc = gspread.authorize(creds)
 
-worksheet = gc.open('dlexp1').sheet1
 
-rows = worksheet.get_all_values()
-
-df = pd.DataFrame(rows[1:], columns=rows[0])
-df = df.astype({'X':'float'})
-df = df.astype({'Y':'float'})
-df.head(10)
-
-X = df[['X']].values
-Y = df[['Y']].values
-
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.33, random_state = 33)
-
-Scaler = MinMaxScaler()
-
-Scaler.fit(X_train)
-
-X_train = Scaler.transform(X_train)
-
-AI_brain = Sequential([
-    Dense(units = 4, activation = 'relu',input_shape = [1]),
-    Dense(units = 3, activation = 'relu'),
-    Dense(units = 1)
-    ])
-
-AI_brain.summary()
-
-AI_brain.compile(optimizer = 'rmsprop', loss = 'mse')
-
-AI_brain.fit(X_train, Y_train, epochs = 9000)
-
-loss_df = pd.DataFrame(AI_brain.history.history)
-
-loss_df.plot()
-
-X_test1 = Scaler.transform(X_test)
-
-X_new = [[9]]
-
-X_neww = Scaler.transform(X_new)
-
-AI_brain.predict(X_neww)
 ```
+
+```py
+import pickle
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dropout
+from tensorflow.keras.layers import BatchNormalization
+
+```
+
+```py
+import tensorflow as tf
+import seaborn as sns
+from tensorflow.keras.callbacks import EarlyStopping
+
+```
+```py
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OrdinalEncoder
+from sklearn.metrics import classification_report,confusion_matrix
+
+```
+```py
+import numpy as np
+import matplotlib.pylab as plt
+```
+
+```py
+customer_df = pd.read_csv('customers.csv')
+```
+
+```py
+customer_df.columns
+customer_df.dtypes
+customer_df.shape
+```
+
+```py
+customer_df.isnull().sum()
+```
+
+```py
+customer_df_cleaned = customer_df.dropna(axis=0)
+```
+
+```py
+customer_df_cleaned.isnull().sum()
+customer_df_cleaned.shape
+customer_df_cleaned.dtypes
+```
+```py
+customer_df_cleaned['Gender'].unique()
+customer_df_cleaned['Ever_Married'].unique()
+customer_df_cleaned['Graduated'].unique()
+customer_df_cleaned['Profession'].unique()
+customer_df_cleaned['Spending_Score'].unique()
+customer_df_cleaned['Var_1'].unique()
+customer_df_cleaned['Segmentation'].unique()
+```
+
+```py
+categories_list=[['Male', 'Female'],
+           ['No', 'Yes'],
+           ['No', 'Yes'],
+           ['Healthcare', 'Engineer', 'Lawyer', 'Artist', 'Doctor',
+            'Homemaker', 'Entertainment', 'Marketing', 'Executive'],
+           ['Low', 'Average', 'High']
+           ]
+enc = OrdinalEncoder(categories=categories_list)
+```
+```py
+customers_1 = customer_df_cleaned.copy()
+```
+
+```py
+customers_1[['Gender',
+             'Ever_Married',
+              'Graduated','Profession',
+              'Spending_Score']] = enc.fit_transform(customers_1[['Gender',
+                                                                 'Ever_Married',
+                                                                 'Graduated','Profession',
+                                                                 'Spending_Score']])
+```
+
+
+```py
+customers_1.dtypes
+```
+```py
+le = LabelEncoder()
+customers_1['Segmentation'] = le.fit_transform(customers_1['Segmentation'])
+customers_1.dtypes
+```
+```py
+customers_1 = customers_1.drop('ID',axis=1)
+customers_1 = customers_1.drop('Var_1',axis=1)
+```
+
+```py
+# Calculate the correlation matrix
+corr = customers_1.corr()
+
+# Plot the heatmap
+sns.heatmap(corr,
+        xticklabels=corr.columns,
+        yticklabels=corr.columns,
+        cmap="BuPu",
+        annot= True)
+```
+```py
+sns.pairplot(customers_1)
+
+```
+```py
+
+sns.distplot(customers_1['Age'])
+plt.figure(figsize=(10,6))
+sns.countplot(customers_1['Family_Size'])
+```
+```py
+plt.figure(figsize=(10,6))
+sns.boxplot(x='Family_Size',y='Age',data=customers_1)
+```
+
+```py
+plt.figure(figsize=(10,6))
+sns.scatterplot(x='Family_Size',y='Spending_Score',data=customers_1)
+```
+```py
+plt.figure(figsize=(10,6))
+sns.scatterplot(x='Family_Size',y='Age',data=customers_1)
+```
+
+```py
+customers_1.describe()
+customers_1['Segmentation'].unique()
+```
+
+```py
+X=customers_1[['Gender','Ever_Married','Age','Graduated','Profession','Work_Experience','Spending_Score','Family_Size']].values
+y1 = customers_1[['Segmentation']].values
+one_hot_enc = OneHotEncoder()
+one_hot_enc.fit(y1)
+```
+```py
+y1.shape
+```
+```py
+y = one_hot_enc.transform(y1).toarray()
+y.shape
+```
+```py
+X_train,X_test,y_train,y_test=train_test_split(X,y,
+                                               test_size=0.33,
+                                               random_state=50)
+```
+```py
+X_train[0]
+X_train.shape
+```
+```py
+
+scaler_age = MinMaxScaler()
+scaler_age.fit(X_train[:,2].reshape(-1,1))
+```
+```py
+X_train_scaled = np.copy(X_train)
+X_test_scaled = np.copy(X_test)
+X_train_scaled[:,2] = scaler_age.transform(X_train[:,2].reshape(-1,1)).reshape(-1)
+X_test_scaled[:,2] = scaler_age.transform(X_test[:,2].reshape(-1,1)).reshape(-1)
+```
+```py
+# Creating the model
+ai_brain = Sequential([
+  Dense(4,input_shape=(8,)),
+  Dense(8,activation='relu'),
+  Dense(8,activation='relu'),
+  Dense(4,activation='softmax'),
+])
+```
+```py
+ai_brain.compile(optimizer='adam',
+                 loss='categorical_crossentropy',
+                 metrics=['accuracy'])
+```
+```py
+early_stop = EarlyStopping(monitor='val_loss', patience=2)
+ai_brain.fit(x=X_train_scaled,y=y_train,
+             epochs=2000,
+             batch_size=256,
+             validation_data=(X_test_scaled,y_test),
+             )
+```
+```py
+metrics = pd.DataFrame(ai_brain.history.history)
+metrics.head()
+```
+```py
+metrics[['loss','val_loss']].plot()
+```
+```py
+x_test_predictions = np.argmax(ai_brain.predict(X_test_scaled), axis=1)
+x_test_predictions.shape
+y_test_truevalue = np.argmax(y_test,axis=1)
+y_test_truevalue.shape
+```
+```py
+print(confusion_matrix(y_test_truevalue,x_test_predictions))
+print(classification_report(y_test_truevalue,x_test_predictions))
+```
+```py
+# Saving the Model
+ai_brain.save('customer_classification_model.h5')
+# Saving the data
+with open('customer_data.pickle', 'wb') as fh:
+   pickle.dump([X_train_scaled,y_train,X_test_scaled,y_test,customers_1,customer_df_cleaned,scaler_age,enc,one_hot_enc,le], fh)
+
+# Loading the Model
+ai_brain = load_model('customer_classification_model.h5')
+# Loading the data
+with open('customer_data.pickle', 'rb') as fh:
+   [X_train_scaled,y_train,X_test_scaled,y_test,customers_1,customer_df_cleaned,scaler_age,enc,one_hot_enc,le]=pickle.load(fh)
+
+```
+
+```py
+x_single_prediction = np.argmax(ai_brain.predict(X_test_scaled[1:2,:]), axis=1)
+print(x_single_prediction)
+print(le.inverse_transform(x_single_prediction))
+```
+
+
+
+
+
 ## Dataset Information
-![image](https://github.com/SABARI005/basic-nn-model/assets/118660461/a81ebfe2-49d3-43e1-a285-ddf876679ae0)
 
-
+![image](https://github.com/PSriVarshan/nn-classification/assets/114944059/98d5ed2b-6d84-4922-bf21-587d840089c7)
 
 
 ## OUTPUT
 
-### Training Loss Vs Iteration Plot
-![image](https://github.com/SABARI005/basic-nn-model/assets/118660461/b34d7bd6-421e-4e65-8df1-071dd448daca)
+### Heat map
+
+![image](https://github.com/PSriVarshan/nn-classification/assets/114944059/15d185f2-655a-41ea-b8d9-389ac482a930)
 
 
-### Test Data Root Mean Squared Error
-![image](https://github.com/SABARI005/basic-nn-model/assets/118660461/4b8e1d7c-38f4-4c21-b9f7-f9e15f84aa17)
+### Training Loss, Validation Loss Vs Iteration Plot
 
+![image](https://github.com/PSriVarshan/nn-classification/assets/114944059/9d3c6a26-60bf-4414-97a3-cd6913e8a60e)
+
+
+### Classification Report
+
+
+![image](https://github.com/PSriVarshan/nn-classification/assets/114944059/e852844a-ea37-4b0d-bc5f-3d6f407d8ef3)
+
+
+
+### Confusion Matrix
+
+![image](https://github.com/PSriVarshan/nn-classification/assets/114944059/44d78441-89a6-4174-a2fc-4b011017e6b2)
 
 ### New Sample Data Prediction
-![image](https://github.com/SABARI005/basic-nn-model/assets/118660461/c881a688-54e1-4959-835c-d6d75e3fe7e4)
+
+![image](https://github.com/PSriVarshan/nn-classification/assets/114944059/d6897d36-4811-4de8-9e47-0832a77a4921)
 
 
 ## RESULT
-A neural network regression model for the given dataset has been developed Sucessfully.
+### A neural network classification model is developed for the given dataset.
