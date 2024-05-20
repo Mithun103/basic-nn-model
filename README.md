@@ -59,8 +59,8 @@ Plot the performance plot
 Evaluate the model with the testing data.
 
 ## PROGRAM
-### Name:PAVITHRA R
-### Register Number:212222230106
+### Name:MITHUN MS
+### Register Number:212222240067
 ```python
 import pandas as pd
 import seaborn as sns
