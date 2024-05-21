@@ -133,19 +133,20 @@ ai_brain.predict(X_n1_1)
 
 ### Training Loss Vs Iteration Plot
 
-![4](https://github.com/Pavithraramasaamy/basic-nn-model/assets/118596964/9246ba2a-a5fa-4858-83c2-e7d6f2c0701b)
-
+![image](https://github.com/Mithun103/basic-nn-model/assets/118344695/2d93ab21-2cae-4f21-bfa0-3c8e0ae7e036)
 
 ### Test Data Root Mean Squared Error
 
-![3](https://github.com/Pavithraramasaamy/basic-nn-model/assets/118596964/194b7d81-d903-4a52-8376-b321cd63882d)
+
+![image](https://github.com/Mithun103/basic-nn-model/assets/118344695/39576f2e-6eb4-40b7-919e-f19d4b772f12)
 
 
 ![5](https://github.com/Pavithraramasaamy/basic-nn-model/assets/118596964/e91facb9-f690-4137-bc01-2e8880704fb9)
 
 ### New Sample Data Prediction
 
-![6](https://github.com/Pavithraramasaamy/basic-nn-model/assets/118596964/7e22d9d8-ad98-421c-867c-95faaef608dc)
+![image](https://github.com/Mithun103/basic-nn-model/assets/118344695/ade2b04d-b9c3-43dd-bfe8-784c17b6ba92)
+
 
 ## RESULT
 
