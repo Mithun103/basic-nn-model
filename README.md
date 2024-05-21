@@ -141,7 +141,8 @@ ai_brain.predict(X_n1_1)
 ![image](https://github.com/Mithun103/basic-nn-model/assets/118344695/39576f2e-6eb4-40b7-919e-f19d4b772f12)
 
 
-![5](https://github.com/Pavithraramasaamy/basic-nn-model/assets/118596964/e91facb9-f690-4137-bc01-2e8880704fb9)
+![image](https://github.com/Mithun103/basic-nn-model/assets/118344695/bc6b7a70-9363-4442-8f90-1fbb16fe8a5e)
+
 
 ### New Sample Data Prediction
 
